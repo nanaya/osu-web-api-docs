@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,12 +210,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -225,24 +219,72 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#endpoint" class="toc-h1 toc-link" data-title="Endpoint">Endpoint</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#base-url" class="toc-h2 toc-link" data-title="Base URL">Base URL</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#api-versions" class="toc-h2 toc-link" data-title="API Versions">API Versions</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#chat" class="toc-h1 toc-link" data-title="Chat">Chat</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-channel-list" class="toc-h2 toc-link" data-title="Get Channel List">Get Channel List</a>
+                  </li>
+                  <li>
+                    <a href="#join-channel" class="toc-h2 toc-link" data-title="Join Channel">Join Channel</a>
+                  </li>
+                  <li>
+                    <a href="#leave-channel" class="toc-h2 toc-link" data-title="Leave Channel">Leave Channel</a>
+                  </li>
+                  <li>
+                    <a href="#create-channel" class="toc-h2 toc-link" data-title="Create Channel">Create Channel</a>
+                  </li>
+                  <li>
+                    <a href="#get-channel-messages" class="toc-h2 toc-link" data-title="Get Channel Messages">Get Channel Messages</a>
+                  </li>
+                  <li>
+                    <a href="#send-message-to-channel" class="toc-h2 toc-link" data-title="Send Message to Channel">Send Message to Channel</a>
+                  </li>
+                  <li>
+                    <a href="#mark-channel-as-read" class="toc-h2 toc-link" data-title="Mark Channel as Read">Mark Channel as Read</a>
+                  </li>
+                  <li>
+                    <a href="#get-updates" class="toc-h2 toc-link" data-title="Get Updates">Get Updates</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#object-structures" class="toc-h1 toc-link" data-title="Object Structures">Object Structures</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#chatchannel" class="toc-h2 toc-link" data-title="ChatChannel">ChatChannel</a>
+                  </li>
+                  <li>
+                    <a href="#chatmessage" class="toc-h2 toc-link" data-title="ChatMessage">ChatMessage</a>
+                  </li>
+                  <li>
+                    <a href="#user" class="toc-h2 toc-link" data-title="User">User</a>
+                  </li>
+                  <li>
+                    <a href="#usercompact" class="toc-h2 toc-link" data-title="UserCompact">UserCompact</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#references" class="toc-h1 toc-link" data-title="References">References</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#routes" class="toc-h2 toc-link" data-title="Routes">Routes</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -254,133 +296,265 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the osu!api. You can use this API to get information on various circles and those who click them.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right (eventually).</p>
+<h1 id='endpoint'>Endpoint</h1><h2 id='base-url'>Base URL</h2>
+<p>The base URL is: <code>https://osu.ppy.sh/api/[version]/</code></p>
+<h2 id='api-versions'>API Versions</h2>
+<p>This is combined with the base endpoint to determine where requests should be sent.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<table><thead>
+<tr>
+<th>Version</th>
+<th>Status</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>v2</td>
+<td>current</td>
+</tr>
+<tr>
+<td>v1</td>
+<td><em>legacy api provided by the old site, will be deprecated soon</em></td>
+</tr>
+</tbody></table>
+<h1 id='authentication'>Authentication</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://osu.ppy.sh/api/[version]/[endpoint]"</span>
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>{{token}}</code> with your OAuth2 token.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<aside class="warning">
+Public access is not yet available, thus this section is incomplete.
+</aside>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>osu!api uses OAuth2 to grant access to the API. You can register for access <code>[somewhere eventually]</code>.</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p>osu!api requires a valid token to be included with all API requests in a header that looks like the following:</p>
+
+<p><code>Authorization: Bearer {{token}}</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>{{token}}</code> with your OAuth2 token.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<h1 id='chat'>Chat</h1><h2 id='get-channel-list'>Get Channel List</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels"</span>
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+    </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#osu"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The official osu! channel (english only)."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint returns a list of all joinable public channels.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p><code>GET /chat/channels</code></p>
+<h3 id='response-format'>Response Format</h3>
+<p>Returns an array of <a href="#chatchannel">ChatChannel</a></p>
+<h2 id='join-channel'>Join Channel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5/users/102"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#osu"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The official osu! channel (english only)."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint allows you to join a public channel.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code>POST /chat/channels/[channel_id]/users/[user_id]</code></p>
+<h3 id='response-format-2'>Response Format</h3>
+<p>Returns the joined <a href="#chatchannel">ChatChannel</a></p>
+
+<aside class="notice">
+This endpoint will only allow the joining of public channels initially.
+</aside>
+
+<aside class="warning">Not yet implemented.</aside>
+<h2 id='leave-channel'>Leave Channel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5/users/102"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command will return an empty response with status code <code>204 No Content</code></p>
+</blockquote>
+
+<p>This endpoint allows you to leave a public channel.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE /chat/channels/[channel_id]/users/[user_id]</code></p>
+<h3 id='response-format-3'>Response Format</h3>
+<p><em>empty response</em></p>
+
+<aside class="notice">
+This endpoint will only allow the leaving of public channels initially.
+</aside>
+
+<aside class="warning">Not yet implemented.</aside>
+<h2 id='create-channel'>Create Channel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/new"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"new_channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"presence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#osu"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The official osu! channel (english only)."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_read_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="mi">102</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"last_read_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150001235</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150001234</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:42+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i can haz featured artist plz?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nekodex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#333333"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/102?1500537068"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows you to create a new PM channel.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /chat/new</code></p>
+<h3 id='post-parameters'>POST Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td><strong>(required)</strong> <code>user_id</code> of user to start PM with</td>
+</tr>
+<tr>
+<td>message</td>
+<td><strong>(required)</strong> message to send</td>
+</tr>
+</tbody></table>
+<h3 id='response-format-4'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>new_channel_id</td>
+<td><code>channel_id</code> of newly created <a href="#chatchannel">ChatChannel</a></td>
+</tr>
+<tr>
+<td>presence</td>
+<td>array of <a href="#chatchannel">ChatChannel</a></td>
+</tr>
+<tr>
+<td>message</td>
+<td>the sent <a href="#chatmessage">ChatMessage</a></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This endpoint will only allow the creation of PMs initially, group chat support will come later.
+</aside>
+<h2 id='get-channel-messages'>Get Channel Messages</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5?limit=20"</span>
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005004</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:34+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i am a lazerface"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#3366FF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:42+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uh ok then"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nekodex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#333333"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/102?1500537068"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns the chat messages for a specific channel.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /chat/channels/[channel_id]</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -389,37 +563,45 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>channel_id</td>
+<td><strong>(required)</strong> The ID of the channel to retrieve messages for</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>number of messages to return (max of 50) [not yet implemented]</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h3 id='response-format-5'>Response Format</h3>
+<p>Returns an array of <a href="#chatmessage">ChatMessage</a></p>
+<h2 id='send-message-to-channel'>Send Message to Channel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5"</span>
+  -X POST
+  -d <span class="s2">"message=i+am+a+lazerface"</span>
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005004</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:34+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i am a lazerface"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#3366FF"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /chat/channels/[channel_id]</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -428,77 +610,465 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>channel_id</td>
+<td><strong>(required)</strong> The <code>channel_id</code> of the channel to mark as read</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+<h3 id='post-parameters-2'>POST Parameters</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>message</td>
+<td><strong>(required)</strong> The message content (url encoded)</td>
+</tr>
+</tbody></table>
+<h3 id='response-format-6'>Response Format</h3>
+<p>The sent <a href="#chatmessage">ChatMessage</a></p>
+
+<aside class="notice">
+When sending a message, the <code>last_read_id</code> for the <a href='#chatchannel'>ChatChannel</a> is also updated to mark the new message as read.
+</aside>
+<h2 id='mark-channel-as-read'>Mark Channel as Read</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5/mark-as-read"</span>
+  -X POST
+  -d <span class="s2">"message_id=9150005005"</span>
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command will return an empty response with status code <code>204 No Content</code></p>
+</blockquote>
+
+<p>This endpoint marks the channel as having being read up to the given <code>message_id</code>.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /chat/channels/[channel_id]/mark-as-read</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>channel_id</td>
+<td><strong>(required)</strong> The <code>channel_id</code> of the channel to mark as read</td>
+</tr>
+</tbody></table>
+<h3 id='post-parameters-3'>POST Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message_id</td>
+<td><strong>(required)</strong> The <code>message_id</code> of the message to mark as read up to</td>
+</tr>
+</tbody></table>
+<h3 id='response-format-7'>Response Format</h3>
+<p><em>empty response</em></p>
+
+<aside class="notice">
+Note that the read marker cannot be moved backwards - i.e. if a channel has been marked as read up to <code>message_id = 12</code>, you cannot then set it backwards to <code>message_id = 10</code>. It will be rejected.
+</aside>
+<h2 id='get-updates'>Get Updates</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/updates?since=9150005005"</span>
+  -H <span class="s2">"Authorization: Bearer {{token}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"presence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#osu"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The official osu! channel (english only)."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_read_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="mi">102</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"last_read_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150001235</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150001234</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005004</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:34+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i am a lazerface"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#3366FF"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:42+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uh ok then"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nekodex"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#333333"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/102?1500537068"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns new messages since the given <code>message_id</code> along with updated channel &#39;presence&#39; data.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /chat/updates?since=[message_id]</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message_id</td>
+<td><strong>(required)</strong> The <code>message_id</code> of the last message to retrieve messages since</td>
+</tr>
+</tbody></table>
+<h3 id='response-format-8'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>presence</td>
+<td>array of <a href="#chatchannel">ChatChannel</a></td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>messages</td>
+<td>array of <a href="#chatmessage">ChatMessage</a></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Note that this returns messages for all channels the user has joined.
+</aside>
+<h1 id='object-structures'>Object Structures</h1><h2 id='chatchannel'>ChatChannel</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test channel"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wheeeee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GROUP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_read_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="mi">102</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Represents an individual chat &quot;channel&quot; in the game.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>channel_id</td>
+<td>int</td>
+<td></td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>name</td>
+<td>string</td>
+<td></td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>description</td>
+<td>?string</td>
+<td></td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>type</td>
+<td>string</td>
+<td>see channel types below</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>last_read_id?</td>
+<td>?int</td>
+<td><code>message_id</code> of last message read (only returned in presence responses)</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>last_message_id?</td>
+<td>?int</td>
+<td><code>message_id</code> of last known message (only returned in presence responses)</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>users?</td>
+<td>?int[]</td>
+<td>array of <code>user_id</code> listing those in the channel (only for <code>GROUP</code> channels)</td>
+</tr>
+</tbody></table>
+<h3 id='channel-types'>Channel Types</h3>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Permission Check Involved</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PUBLIC</td>
+<td>no</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>PRIVATE</td>
+<td>is player in allowed group? (channel.allowed_groups)</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>MULTIPLAYER</td>
+<td>is player in mp game?</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>SPECTATOR</td>
+<td>no</td>
+</tr>
+<tr>
+<td>TEMPORARY</td>
+<td><em>deprecated</em></td>
+</tr>
+<tr>
+<td>PM</td>
+<td>1v1 me bro (user_channels)</td>
+</tr>
+<tr>
+<td>GROUP</td>
+<td>is player in channel? (user_channels)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Public channels, group chats and private DMs are all considered "channels".
+</aside>
+<h2 id='chatmessage'>ChatMessage</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005004</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sender_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T06:33:34+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i am a lazerface"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_action"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#3366FF"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Represents an individual Message within a <a href="#chatchannel">ChatChannel</a>.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message_id</td>
+<td>int</td>
+<td>unique identifier for message</td>
+</tr>
+<tr>
+<td>sender_id</td>
+<td>int</td>
+<td><code>user_id</code> of the sender</td>
+</tr>
+<tr>
+<td>channel_id</td>
+<td>int</td>
+<td><code>channel_id</code> of where the message was sent</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>string</td>
+<td>when the message was sent, ISO-8601</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>message content</td>
+</tr>
+<tr>
+<td>is_action</td>
+<td>boolean</td>
+<td>was this an action? i.e. <code>/me dances</code></td>
+</tr>
+<tr>
+<td>sender</td>
+<td><a href="#usercompact">UserCompact</a></td>
+<td>embeded UserCompact object to save additional api lookups</td>
+</tr>
+</tbody></table>
+<h2 id='user'>User</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"💃"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Represents a User.</p>
+
+<aside class="notice">TODO: This &gt;.&gt;</aside>
+<h2 id='usercompact'>UserCompact</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peppy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"profile_colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#3366FF"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://a.ppy.sh/2?1519081077.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_bot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_supporter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This is a subset of the above <a href="#user">User</a>, mainly used for embedding in certain responses to save additional api lookups.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>unique identifier for user</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>user&#39;s display name</td>
+</tr>
+<tr>
+<td>profile_colour</td>
+<td>string</td>
+<td>colour of username/profile highlight, hex code (e.g. <code>#333333</code>)</td>
+</tr>
+<tr>
+<td>avatar_url</td>
+<td>string</td>
+<td>url of user&#39;s avatar</td>
+</tr>
+<tr>
+<td>country_code</td>
+<td>string</td>
+<td>two-letter code representing user&#39;s country</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>boolean</td>
+<td>has this account been active in the last x months?</td>
+</tr>
+<tr>
+<td>is_bot</td>
+<td>boolean</td>
+<td>is this a bot account?</td>
+</tr>
+<tr>
+<td>is_online</td>
+<td>boolean</td>
+<td>is the user currently online? (either on lazer or the new website)</td>
+</tr>
+<tr>
+<td>is_supporter</td>
+<td>boolean</td>
+<td>does this user have supporter?</td>
+</tr>
+</tbody></table>
+<h1 id='references'>References</h1>
+<aside class="notice">TODO: Remove?</aside>
+<h2 id='routes'>Routes</h2>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST</td>
+<td>messages/new</td>
+<td>MessagesController@newConversation</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>messages/updates</td>
+<td>MessagesController@updates</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>messages/channel/{channel_id}</td>
+<td>MessagesController@channel</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>messages/channel/{channel_id}/mark-as-read</td>
+<td>MessagesController@postMarkAsRead</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>messages/{channel_id}</td>
+<td>API\ChatController@postMessage</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>messages/presence</td>
+<td>MessagesController@presence</td>
+</tr>
+<tr>
+<td>RESOURCE</td>
+<td>messages</td>
+<td>MessagesController</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>
