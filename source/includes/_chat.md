@@ -42,22 +42,19 @@ curl "https://osu.ppy.sh/api/v2/chat/channels/5/users/102"
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "channel_id": 5,
-    "name": "#osu",
-    "description": "The official osu! channel (english only).",
-    "type": "public"
-  },
-  ...
-]
+{
+  "channel_id": 5,
+  "name": "#osu",
+  "description": "The official osu! channel (english only).",
+  "type": "public"
+}
 ```
 
 This endpoint allows you to join a public channel.
 
 ### HTTP Request
 
-`POST /chat/channels/[channel_id]/users/[user_id]`
+`PUT /chat/channels/[channel_id]/users/[user_id]`
 
 ### Response Format
 
@@ -66,8 +63,6 @@ Returns the joined [ChatChannel](#chatchannel)
 <aside class="notice">
 This endpoint will only allow the joining of public channels initially.
 </aside>
-
-<aside class="warning">Not yet implemented.</aside>
 
 ## Leave Channel
 
@@ -93,10 +88,8 @@ _empty response_
 This endpoint will only allow the leaving of public channels initially.
 </aside>
 
-<aside class="warning">Not yet implemented.</aside>
 
-
-## Create Channel
+## Create New PM
 
 ```shell
 curl "https://osu.ppy.sh/api/v2/chat/new"
@@ -166,7 +159,7 @@ Parameter  | Description
 ---------- | -----------
 target_id  | **(required)** `user_id` of user to start PM with
 message    | **(required)** message to send
-
+is_action  | boolean, whether the message is an action
 
 ### Response Format
 
@@ -245,7 +238,7 @@ This endpoint returns the chat messages for a specific channel.
 Parameter  | Description
 ---------- | -----------
 channel_id | **(required)** The ID of the channel to retrieve messages for
-limit      | number of messages to return (max of 50) [not yet implemented]
+limit      | number of messages to return (max of 50)
 
 ### Response Format
 
@@ -299,6 +292,7 @@ channel_id | **(required)** The `channel_id` of the channel to mark as read
 Parameter  | Description
 ---------- | -----------
 message    | **(required)** The message content (url encoded)
+is_action  | boolean, whether the message is an action
 
 ### Response Format
 
@@ -312,9 +306,8 @@ When sending a message, the <code>last_read_id</code> for the <a href='#chatchan
 ## Mark Channel as Read
 
 ```shell
-curl "https://osu.ppy.sh/api/v2/chat/channels/5/mark-as-read"
-  -X POST
-  -d "message_id=9150005005"
+curl "https://osu.ppy.sh/api/v2/chat/channels/5/mark-as-read/9150005005"
+  -X PUT
   -H "Authorization: Bearer {{token}}"
 ```
 
@@ -324,18 +317,13 @@ This endpoint marks the channel as having being read up to the given `message_id
 
 ### HTTP Request
 
-`POST /chat/channels/[channel_id]/mark-as-read`
+`PUT /chat/channels/[channel_id]/mark-as-read/[message_id]`
 
 ### URL Parameters
 
 Parameter  | Description
 ---------- | -----------
 channel_id | **(required)** The `channel_id` of the channel to mark as read
-
-### POST Parameters
-
-Parameter  | Description
----------- | -----------
 message_id | **(required)** The `message_id` of the message to mark as read up to
 
 ### Response Format
@@ -429,13 +417,15 @@ This endpoint returns new messages since the given `message_id` along with updat
 
 ### HTTP Request
 
-`GET /chat/updates?since=[message_id]`
+`GET /chat/updates?since=[message_id]&channel_id=[channel_id]`
 
 ### URL Parameters
 
 Parameter  | Description
 ---------- | -----------
-message_id | **(required)** The `message_id` of the last message to retrieve messages since
+since      | **(required)** The `message_id` of the last message to retrieve messages since
+channel_id | If provided, will only return messages for the given channel
+limit      | number of messages to return (max of 50)
 
 ### Response Format
 

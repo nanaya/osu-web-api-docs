@@ -12,7 +12,6 @@ toc_footers:
 includes:
   - chat
   - structures
-  - references
 # - errors
 
 search: true
@@ -22,7 +21,9 @@ search: true
 
 Welcome to the osu!api. You can use this API to get information on various circles and those who click them.
 
-You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right (eventually).
+You can view code examples in the dark area to the right.
+
+This documentation is a work-in-progress and likely contains errors.
 
 # Endpoint
 
@@ -36,7 +37,7 @@ This is combined with the base endpoint to determine where requests should be se
 
 Version | Status
 ------- | ---------------------------------------------------------------
-v2      | current
+v2      | current _(not yet public, consider unstable and expect breaking changes)_
 v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication

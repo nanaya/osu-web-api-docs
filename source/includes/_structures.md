@@ -6,6 +6,7 @@
   "channel_id": 1337,
   "name": "test channel",
   "description": "wheeeee",
+  "icon": "/images/layout/avatar-guest@2x.png",
   "type": "GROUP",
   "last_read_id": 9150005005,
   "last_message_id": 9150005005,
@@ -24,6 +25,7 @@ Field            | Type                 | Description
 channel_id       | int                  |
 name             | string               |
 description      | ?string              |
+icon?            | string               | display icon for the channel
 type             | string               | see channel types below
 last_read_id?    | ?int                 | `message_id` of last message read (only returned in presence responses)
 last_message_id? | ?int                 | `message_id` of last known message (only returned in presence responses)
@@ -31,15 +33,20 @@ users?           | ?int[]               | array of `user_id` listing those in th
 
 ### Channel Types
 
-Type        | Permission Check Involved
+Type        | Permission Check for Joining/Messaging
 ----------- | -----------------------------------------------------
-PUBLIC      | no
-PRIVATE     | is player in allowed group? (channel.allowed_groups)
-MULTIPLAYER | is player in mp game?
-SPECTATOR   | no
+PUBLIC      |
+PRIVATE     | is player in the allowed groups? (channel.allowed_groups)
+MULTIPLAYER | is player currently in the mp game?
+SPECTATOR   |
 TEMPORARY   | _deprecated_
-PM          | 1v1 me bro (user_channels)
+PM          | see below (user_channels)
 GROUP       | is player in channel? (user_channels)
+
+For PMs, two factors are taken into account:
+
+- Is either user blocking the other? If so, deny.
+- Does the target only accept PMs from friends? Is the current user a friend? If not, deny.
 
 <aside class="notice">
 Public channels, group chats and private DMs are all considered "channels".
