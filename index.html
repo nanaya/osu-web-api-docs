@@ -245,7 +245,7 @@
                     <a href="#leave-channel" class="toc-h2 toc-link" data-title="Leave Channel">Leave Channel</a>
                   </li>
                   <li>
-                    <a href="#create-channel" class="toc-h2 toc-link" data-title="Create Channel">Create Channel</a>
+                    <a href="#create-new-pm" class="toc-h2 toc-link" data-title="Create New PM">Create New PM</a>
                   </li>
                   <li>
                     <a href="#get-channel-messages" class="toc-h2 toc-link" data-title="Get Channel Messages">Get Channel Messages</a>
@@ -278,14 +278,6 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#references" class="toc-h1 toc-link" data-title="References">References</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#routes" class="toc-h2 toc-link" data-title="Routes">Routes</a>
-                  </li>
-              </ul>
-          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
@@ -298,7 +290,9 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the osu!api. You can use this API to get information on various circles and those who click them.</p>
 
-<p>You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right (eventually).</p>
+<p>You can view code examples in the dark area to the right.</p>
+
+<p>This documentation is a work-in-progress and likely contains errors.</p>
 <h1 id='endpoint'>Endpoint</h1><h2 id='base-url'>Base URL</h2>
 <p>The base URL is: <code>https://osu.ppy.sh/api/[version]/</code></p>
 <h2 id='api-versions'>API Versions</h2>
@@ -312,7 +306,7 @@
 </thead><tbody>
 <tr>
 <td>v2</td>
-<td>current</td>
+<td>current <em>(not yet public, consider unstable and expect breaking changes)</em></td>
 </tr>
 <tr>
 <td>v1</td>
@@ -368,27 +362,22 @@ You must replace <code>{{token}}</code> with your OAuth2 token.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#osu"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The official osu! channel (english only)."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#osu"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The official osu! channel (english only)."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint allows you to join a public channel.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST /chat/channels/[channel_id]/users/[user_id]</code></p>
+<p><code>PUT /chat/channels/[channel_id]/users/[user_id]</code></p>
 <h3 id='response-format-2'>Response Format</h3>
 <p>Returns the joined <a href="#chatchannel">ChatChannel</a></p>
 
 <aside class="notice">
 This endpoint will only allow the joining of public channels initially.
 </aside>
-
-<aside class="warning">Not yet implemented.</aside>
 <h2 id='leave-channel'>Leave Channel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5/users/102"</span>
   -X DELETE
   -H <span class="s2">"Authorization: Bearer {{token}}"</span>
@@ -406,9 +395,7 @@ This endpoint will only allow the joining of public channels initially.
 <aside class="notice">
 This endpoint will only allow the leaving of public channels initially.
 </aside>
-
-<aside class="warning">Not yet implemented.</aside>
-<h2 id='create-channel'>Create Channel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/new"</span>
+<h2 id='create-new-pm'>Create New PM</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/new"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {{token}}"</span>
 </code></pre>
@@ -478,6 +465,10 @@ This endpoint will only allow the leaving of public channels initially.
 <tr>
 <td>message</td>
 <td><strong>(required)</strong> message to send</td>
+</tr>
+<tr>
+<td>is_action</td>
+<td>boolean, whether the message is an action</td>
 </tr>
 </tbody></table>
 <h3 id='response-format-4'>Response Format</h3>
@@ -568,7 +559,7 @@ This endpoint will only allow the creation of PMs initially, group chat support 
 </tr>
 <tr>
 <td>limit</td>
-<td>number of messages to return (max of 50) [not yet implemented]</td>
+<td>number of messages to return (max of 50)</td>
 </tr>
 </tbody></table>
 <h3 id='response-format-5'>Response Format</h3>
@@ -625,6 +616,10 @@ This endpoint will only allow the creation of PMs initially, group chat support 
 <td>message</td>
 <td><strong>(required)</strong> The message content (url encoded)</td>
 </tr>
+<tr>
+<td>is_action</td>
+<td>boolean, whether the message is an action</td>
+</tr>
 </tbody></table>
 <h3 id='response-format-6'>Response Format</h3>
 <p>The sent <a href="#chatmessage">ChatMessage</a></p>
@@ -632,9 +627,8 @@ This endpoint will only allow the creation of PMs initially, group chat support 
 <aside class="notice">
 When sending a message, the <code>last_read_id</code> for the <a href='#chatchannel'>ChatChannel</a> is also updated to mark the new message as read.
 </aside>
-<h2 id='mark-channel-as-read'>Mark Channel as Read</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5/mark-as-read"</span>
-  -X POST
-  -d <span class="s2">"message_id=9150005005"</span>
+<h2 id='mark-channel-as-read'>Mark Channel as Read</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://osu.ppy.sh/api/v2/chat/channels/5/mark-as-read/9150005005"</span>
+  -X PUT
   -H <span class="s2">"Authorization: Bearer {{token}}"</span>
 </code></pre>
 <blockquote>
@@ -643,7 +637,7 @@ When sending a message, the <code>last_read_id</code> for the <a href='#chatchan
 
 <p>This endpoint marks the channel as having being read up to the given <code>message_id</code>.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>POST /chat/channels/[channel_id]/mark-as-read</code></p>
+<p><code>PUT /chat/channels/[channel_id]/mark-as-read/[message_id]</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -655,14 +649,6 @@ When sending a message, the <code>last_read_id</code> for the <a href='#chatchan
 <td>channel_id</td>
 <td><strong>(required)</strong> The <code>channel_id</code> of the channel to mark as read</td>
 </tr>
-</tbody></table>
-<h3 id='post-parameters-3'>POST Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 <tr>
 <td>message_id</td>
 <td><strong>(required)</strong> The <code>message_id</code> of the message to mark as read up to</td>
@@ -749,7 +735,7 @@ Note that the read marker cannot be moved backwards - i.e. if a channel has been
 </span></code></pre>
 <p>This endpoint returns new messages since the given <code>message_id</code> along with updated channel &#39;presence&#39; data.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /chat/updates?since=[message_id]</code></p>
+<p><code>GET /chat/updates?since=[message_id]&amp;channel_id=[channel_id]</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -758,8 +744,16 @@ Note that the read marker cannot be moved backwards - i.e. if a channel has been
 </tr>
 </thead><tbody>
 <tr>
-<td>message_id</td>
+<td>since</td>
 <td><strong>(required)</strong> The <code>message_id</code> of the last message to retrieve messages since</td>
+</tr>
+<tr>
+<td>channel_id</td>
+<td>If provided, will only return messages for the given channel</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>number of messages to return (max of 50)</td>
 </tr>
 </tbody></table>
 <h3 id='response-format-8'>Response Format</h3>
@@ -786,6 +780,7 @@ Note that this returns messages for all channels the user has joined.
   </span><span class="s2">"channel_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test channel"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wheeeee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/layout/avatar-guest@2x.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GROUP"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"last_read_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
   </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9150005005</span><span class="p">,</span><span class="w">
@@ -821,6 +816,11 @@ Note that this returns messages for all channels the user has joined.
 <td></td>
 </tr>
 <tr>
+<td>icon?</td>
+<td>string</td>
+<td>display icon for the channel</td>
+</tr>
+<tr>
 <td>type</td>
 <td>string</td>
 <td>see channel types below</td>
@@ -845,24 +845,24 @@ Note that this returns messages for all channels the user has joined.
 <table><thead>
 <tr>
 <th>Type</th>
-<th>Permission Check Involved</th>
+<th>Permission Check for Joining/Messaging</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>PUBLIC</td>
-<td>no</td>
+<td></td>
 </tr>
 <tr>
 <td>PRIVATE</td>
-<td>is player in allowed group? (channel.allowed_groups)</td>
+<td>is player in the allowed groups? (channel.allowed_groups)</td>
 </tr>
 <tr>
 <td>MULTIPLAYER</td>
-<td>is player in mp game?</td>
+<td>is player currently in the mp game?</td>
 </tr>
 <tr>
 <td>SPECTATOR</td>
-<td>no</td>
+<td></td>
 </tr>
 <tr>
 <td>TEMPORARY</td>
@@ -870,13 +870,20 @@ Note that this returns messages for all channels the user has joined.
 </tr>
 <tr>
 <td>PM</td>
-<td>1v1 me bro (user_channels)</td>
+<td>see below (user_channels)</td>
 </tr>
 <tr>
 <td>GROUP</td>
 <td>is player in channel? (user_channels)</td>
 </tr>
 </tbody></table>
+
+<p>For PMs, two factors are taken into account:</p>
+
+<ul>
+<li>Is either user blocking the other? If so, deny.</li>
+<li>Does the target only accept PMs from friends? Is the current user a friend? If not, deny.</li>
+</ul>
 
 <aside class="notice">
 Public channels, group chats and private DMs are all considered "channels".
@@ -1018,52 +1025,6 @@ Public channels, group chats and private DMs are all considered "channels".
 <td>is_supporter</td>
 <td>boolean</td>
 <td>does this user have supporter?</td>
-</tr>
-</tbody></table>
-<h1 id='references'>References</h1>
-<aside class="notice">TODO: Remove?</aside>
-<h2 id='routes'>Routes</h2>
-<table><thead>
-<tr>
-<th>Method</th>
-<th>Route</th>
-<th>Action</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>POST</td>
-<td>messages/new</td>
-<td>MessagesController@newConversation</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>messages/updates</td>
-<td>MessagesController@updates</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>messages/channel/{channel_id}</td>
-<td>MessagesController@channel</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>messages/channel/{channel_id}/mark-as-read</td>
-<td>MessagesController@postMarkAsRead</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>messages/{channel_id}</td>
-<td>API\ChatController@postMessage</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>messages/presence</td>
-<td>MessagesController@presence</td>
-</tr>
-<tr>
-<td>RESOURCE</td>
-<td>messages</td>
-<td>MessagesController</td>
 </tr>
 </tbody></table>
 
