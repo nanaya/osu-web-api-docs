@@ -22,14 +22,14 @@ Represents an individual chat "channel" in the game.
 
 Field            | Type                 | Description
 ---------------- | -------------------- | ------------------
-channel_id       | int                  |
+channel_id       | number               |
 name             | string               |
-description      | ?string              |
-icon?            | string               | display icon for the channel
+description      | string?              |
+icon*            | string               | display icon for the channel
 type             | string               | see channel types below
-last_read_id?    | ?int                 | `message_id` of last message read (only returned in presence responses)
-last_message_id? | ?int                 | `message_id` of last known message (only returned in presence responses)
-users?           | ?int[]               | array of `user_id` listing those in the channel (only for `GROUP` channels)
+last_read_id*    | number?              | `message_id` of last message read (only returned in presence responses)
+last_message_id* | number?              | `message_id` of last known message (only returned in presence responses)
+users*           | number[]?            | array of `user_id` that are in the channel (not included for `PUBLIC` channels)
 
 ### Channel Types
 
@@ -80,9 +80,9 @@ Represents an individual Message within a [ChatChannel](#chatchannel).
 
 Field      | Type                         | Description
 ---------- | ---------------------------- | ------------------------------------------------------------
-message_id | int                          | unique identifier for message
-sender_id  | int                          | `user_id` of the sender
-channel_id | int                          | `channel_id` of where the message was sent
+message_id | number                       | unique identifier for message
+sender_id  | number                       | `user_id` of the sender
+channel_id | number                       | `channel_id` of where the message was sent
 timestamp  | string                       | when the message was sent, ISO-8601
 content    | string                       | message content
 is_action  | boolean                      | was this an action? i.e. `/me dances`
@@ -119,7 +119,7 @@ This is a subset of the above [User](#user), mainly used for embedding in certai
 
 Field          | Type        | Description
 -------------- | ------------| ----------------------------------------------------------------------
-id             | int         | unique identifier for user
+id             | number      | unique identifier for user
 username       | string      | user's display name
 profile_colour | string      | colour of username/profile highlight, hex code (e.g. `#333333`)
 avatar_url     | string      | url of user's avatar
