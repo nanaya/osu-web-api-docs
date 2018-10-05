@@ -177,7 +177,7 @@ This endpoint will only allow the creation of PMs initially, group chat support 
 ## Get Channel Messages
 
 ```shell
-curl "https://osu.ppy.sh/api/v2/chat/channels/5?limit=20"
+curl "https://osu.ppy.sh/api/v2/chat/channels/5/messages?limit=20"
   -H "Authorization: Bearer {{token}}"
 ```
 
@@ -231,7 +231,7 @@ This endpoint returns the chat messages for a specific channel.
 
 ### HTTP Request
 
-`GET /chat/channels/[channel_id]`
+`GET /chat/channels/[channel_id]/messages`
 
 ### URL Parameters
 
@@ -247,7 +247,7 @@ Returns an array of [ChatMessage](#chatmessage)
 ## Send Message to Channel
 
 ```shell
-curl "https://osu.ppy.sh/api/v2/chat/channels/5"
+curl "https://osu.ppy.sh/api/v2/chat/channels/5/messages"
   -X POST
   -d "message=i+am+a+lazerface"
   -H "Authorization: Bearer {{token}}"
@@ -279,7 +279,7 @@ curl "https://osu.ppy.sh/api/v2/chat/channels/5"
 
 ### HTTP Request
 
-`POST /chat/channels/[channel_id]`
+`POST /chat/channels/[channel_id]/messages`
 
 ### URL Parameters
 
